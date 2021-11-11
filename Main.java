@@ -22,27 +22,27 @@ public class Main {
             cafes.verTabla();
 
             System.out.println("Cerramos cafes");
-            cafes.cerrar();
+           // cafes.cerrar();
 
-            Libros libros = new Libros();
+            Libros lib = new Libros();
 
             Libro l1 = new Libro(12345, "Sistemas Operativos", "Tanembaun", "Informatica", 156, 3);
             Libro l2 = new Libro(12453, "Minix", "Stallings", "Informatica", 345, 4);
             Libro l3 = new Libro(1325, "Linux", "Richard Stallman", "FSF", 168, 10);
             Libro l4 = new Libro(1725, "Java", "Juan Garcia", "Programacion", 245, 9);
 
-            libros.anadirLibro(l1);
-            libros.anadirLibro(l2);
-            libros.anadirLibro(l3);
-            libros.anadirLibro(l4);
+            lib.anadirLibro(l1);
+            lib.anadirLibro(l2);
+            lib.anadirLibro(l3);
+            lib.anadirLibro(l4);
 
             System.out.println("Lista libros");
 
-            libros.verCatalogo();
+            lib.verCatalogo();
 
             System.out.println("Campos lobro");
 
-            String[] campos = libros.getCamposLibro();
+            String[] campos = lib.getCamposLibro();
 
             for (String camp : campos) {
                 System.out.println(camp);
@@ -50,19 +50,19 @@ public class Main {
 
 
             System.out.println("Libros por isbn");
-            libros.obtenerLibro(1325);
+            lib.obtenerLibro(1325);
             System.out.println("Actualizamos paginas");
-            libros.actualizarCopias(l2);
+            lib.actualizarCopias(l2);
             System.out.println("Borramos");
-            libros.borrar(l1);
+            lib.borrar(l1);
 
             System.out.println("Listamos");
 
-            libros.verCatalogo();
+            lib.verCatalogo();
 
             System.out.println("Cerramos libros");
 
-            libros.cerrar();
+            lib.cerrar();
 
 
         } catch (AccesoDatosException e) {
