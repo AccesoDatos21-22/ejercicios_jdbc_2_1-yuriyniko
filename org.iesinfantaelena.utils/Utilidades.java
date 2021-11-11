@@ -66,7 +66,7 @@ public class Utilidades {
 		this.password = this.prop.getProperty("password");
 		this.serverName = this.prop.getProperty("server_name");
 		this.portNumber = Integer.parseInt(this.prop.getProperty("port_number"));
-    /*
+
 		System.out.println("Set the following properties:");
 		System.out.println("dbms: " + dbms);
 		System.out.println("driver: " + driver);
@@ -74,7 +74,7 @@ public class Utilidades {
 		System.out.println("userName: " + userName);
 		System.out.println("serverName: " + serverName);
 		System.out.println("portNumber: " + portNumber);
-    */
+
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class Utilidades {
 	
 	/**
 	 * Metodo para imprimir la información de una Excepción SQL y poder depurar errores fácilmente
-	 * @param ex
+	 * @param
 	 */
 	public static void printSQLException(SQLException e) {
         
