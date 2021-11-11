@@ -1,1 +1,20 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6260252&assignment_repo_type=AssignmentRepo)
+### Ejercicios JDBC 2.1 Yuriy Butko
+
+###***¿Dónde llamas a cerrar y liberar? ¿Por qué?***
+    Cerrar:
+
+    Llamaría a este método principalmente en el Main cuando
+    quisiera cerrar la conexión con una base de datos o en
+    algún otro método en la que estaría seguro que sería la
+    ultimo que realice.
+
+    Liberar:
+
+    Lo llamaría al final de cada método para así borrar todo    
+    rastro de datos viejos y que no se los lleve a otros métodos.
+###***Piensa en las ventajas e inconvenientes de esta nueva versión de Cafes.java***
+    
+    Una ventaja seria la reutilización de los métodos limpiar y cerrar
+    porque se pueden poner en todos los métodos
+ 
+    
