@@ -24,6 +24,8 @@ public class Libros {
 
 	// Consultas a realizar en BD
 
+	private static final String INSERT_LIBROS_QUERY = "insert into libros values (?,?,?,?,?,?)";
+
 	private static final String CREATE_TABLE_LIBROS = "create table if not exists libros (isbn integer not null,titulo varchar(50) not null,autor varchar(50) not null,editorial varchar(25) not null,paginas integer not null,copias integer not null,constraint isbn_pk primary key (isbn));";
 
 
@@ -75,7 +77,7 @@ public class Libros {
 	 * 
 	 * @throws AccesoDatosException
 	 */
-	
+
 	private void liberar() {
 		try {
 			// Liberamos todos los recursos pase lo que pase
@@ -109,6 +111,7 @@ public class Libros {
 
     /**
      * Actualiza el numero de copias para un libro
+	 *
      * @throws AccesoDatosException
      */
 	
@@ -116,18 +119,35 @@ public class Libros {
 		
 	}
 
-	
     /**
      * Añade un nuevo libro a la BD
+	 *
      * @throws AccesoDatosException
      */
+
 	public void anadirLibro(Libro libro) throws AccesoDatosException {
-		
-	
+		try {
+			pstmt = con.prepareStatement(INSERT_LIBROS_QUERY);
+
+			pstmt.setInt(1, libro.getISBN());
+			pstmt.setString(2, libro.getTitulo());
+			pstmt.setString(3, libro.getAutor());
+			pstmt.setString(4, libro.getEditorial());
+			pstmt.setInt(5, libro.getPaginas());
+			pstmt.setInt(6, libro.getCopias());
+
+			pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			Utilidades.printSQLException(sqle);
+			throw new AccesoDatosException("Ocurrió un error al acceder a los datos");
+		} finally {
+			liberar();
+		}
 	}
 
 	/**
 	 * Borra un libro por ISBN
+	 *
 	 * @throws AccesoDatosException
 	 */
 
@@ -138,7 +158,7 @@ public class Libros {
 	
 	/**
 	 * Devulve los nombres de los campos de BD
-	 * @return
+	 *
 	 * @throws AccesoDatosException
 	 */
 
@@ -147,13 +167,9 @@ public class Libros {
     return null;
 	}
 
-
 	public void obtenerLibro(int ISBN) throws AccesoDatosException {
 		
 	}
-
-
-
 
 }
 
