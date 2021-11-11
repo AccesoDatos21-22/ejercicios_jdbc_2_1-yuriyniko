@@ -14,24 +14,18 @@ import org.iesinfantaelena.modelo.AccesoDatosException;
 import org.iesinfantaelena.modelo.Libro;
 import org.iesinfantaelena.utils.Utilidades;
 
-
-/**
- * @descrition
- * @author Carlos
- * @date 23/10/2021
- * @version 1.0
- * @license GPLv3
- */
-
 public class Libros {
 
-	// Consultas a realizar en BD
-
-
+	// inicializamos
 	private Connection con;
 	private Statement stmt;
 	private ResultSet rs;
 	private PreparedStatement pstmt;
+
+	// Consultas a realizar en BD
+
+	private static final String CREATE_TABLE_LIBROS = "create table if not exists libros (isbn integer not null,titulo varchar(50) not null,autor varchar(50) not null,editorial varchar(25) not null,paginas integer not null,copias integer not null,constraint isbn_pk primary key (isbn));";
+
 
 	/**
 	 * Constructor: inicializa conexión
@@ -40,47 +34,48 @@ public class Libros {
 	 */
 	
 	public Libros() throws AccesoDatosException {
+		con=null;
+		stmt=null;
+		rs=null;
+		pstmt=null;
 		try {
 			// Obtenemos la conexión
-			this.con = new Utilidades().getConnection();
-			this.stmt = null;
-			this.rs = null;
-			this.pstmt = null;
+			con = new Utilidades().getConnection();
+			stmt.executeQuery(CREATE_TABLE_LIBROS);
+
 		} catch (IOException e) {
 			// Error al leer propiedades
 			// En una aplicación real, escribo en el log y delego
 			System.err.println(e.getMessage());
-			throw new AccesoDatosException(
-					"Ocurrió un error al acceder a los datos");
+			throw new AccesoDatosException("Ocurrió un error al acceder a los datos");
 		} catch (SQLException sqle) {
 			// En una aplicación real, escribo en el log y delego
 			// System.err.println(sqle.getMessage());
 			Utilidades.printSQLException(sqle);
-			throw new AccesoDatosException(
-					"Ocurrió un error al acceder a los datos");
+			throw new AccesoDatosException("Ocurrió un error al acceder a los datos");
+		} finally {
+			liberar();
 		}
 	}
 
-	
 	/**
 	 * Método para cerrar la conexión
 	 * 
 	 * @throws AccesoDatosException
 	 */
+
 	public void cerrar() {
-					
 			if (con != null) {
 				Utilidades.closeConnection(con);
 			}
-		
 	}
 
-	
 	/**
 	 * Método para liberar recursos
 	 * 
 	 * @throws AccesoDatosException
 	 */
+	
 	private void liberar() {
 		try {
 			// Liberamos todos los recursos pase lo que pase
