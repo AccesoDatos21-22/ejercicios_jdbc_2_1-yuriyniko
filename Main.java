@@ -7,7 +7,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         try {
             Cafes cafes = new Cafes();
             cafes.insertar("Cafetito", 150, 1.0f, 100, 1000);
