@@ -10,7 +10,6 @@ import java.sql.Statement;
 import org.iesinfantaelena.modelo.AccesoDatosException;
 import org.iesinfantaelena.utils.Utilidades;
 
-
 public class Cafes {
 
     private static Connection con;
